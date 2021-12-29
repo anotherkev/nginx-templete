@@ -26,7 +26,7 @@
 		#notfound {
 			position: relative;
 			height: 100vh;
-			background: var(--bg-color);
+			background: var(--t1-color);
 		}
 
 		#notfound .notfound {
@@ -129,7 +129,6 @@
 		:root {
 			--s1-color: #2d4579;
 			--s2-color: #FC8955;
-			--bg-color: #B8E3FF;
 			--t1-color: #B8E3FF;
 			--t2-color: #0583D2;
 		}
@@ -137,7 +136,6 @@
 		html[color-scheme='dark'] {
 			--s1-color: #ff005a;
 			--s2-color: #8400ff;
-			--bg-color: #030005;
 			--t1-color: #030005;
 			--t2-color: #fff;
 		}
@@ -171,7 +169,7 @@
 		}
 
 		.slider {
-			background-color: #ccc;
+			background-color: var(--s1-color);
 			bottom: 0;
 			cursor: pointer;
 			left: 0;
@@ -182,7 +180,7 @@
 		}
 
 		.slider:before {
-			background-color: #fff;
+			background-color: var(--t1-color);
 			bottom: 4px;
 			content: "";
 			height: 26px;
@@ -190,10 +188,6 @@
 			position: absolute;
 			transition: .4s;
 			width: 26px;
-		}
-
-		input:checked+.slider {
-			background-color: var(--s1-color);
 		}
 
 		input:checked+.slider:before {
