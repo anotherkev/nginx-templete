@@ -6,25 +6,221 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<meta name="theme-color" content="#030005">
-	<meta name="description" content="404 ~ @anotherkev">
+	<meta name="description" content="404">
 
 	<title>404 ~ @anotherkev</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:700,900" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
-
 	<style>
-		span {
-			color: #ff005a;
+		/* templete */
+		* {
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
 		}
+
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		#notfound {
+			position: relative;
+			height: 100vh;
+			background: var(--bg-color);
+		}
+
+		#notfound .notfound {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
+
+		.notfound {
+			max-width: 767px;
+			width: 100%;
+			line-height: 1.4;
+			text-align: center;
+		}
+
+		.notfound .notfound-404 {
+			position: relative;
+			height: 180px;
+			margin-bottom: 20px;
+			z-index: -1;
+		}
+
+		.notfound .notfound-404 h1 {
+			font-family: 'Montserrat', sans-serif;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			font-size: 224px;
+			font-weight: 900;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			margin-left: -12px;
+			color: var(--t1-color);
+			text-transform: uppercase;
+			text-shadow: -1.5px -1.5px 0px var(--s2-color), 1.5px 1.5px 0px var(--s1-color);
+			letter-spacing: -20px;
+		}
+
+		.notfound .notfound-404 h2 {
+			font-family: 'Montserrat', sans-serif;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 110px;
+			font-size: 42px;
+			font-weight: 700;
+			color: var(--t2-color);
+			text-transform: uppercase;
+			text-shadow: 0px 2px 0px var(--s2-color);
+			letter-spacing: 13px;
+			margin: 0;
+		}
+
+		.notfound a {
+			font-family: 'Montserrat', sans-serif;
+			display: inline-block;
+			text-transform: uppercase;
+			color: var(--s1-color);
+			text-decoration: none;
+			border: 2px solid;
+			background: transparent;
+			padding: 10px 40px;
+			font-size: 14px;
+			font-weight: 700;
+			-webkit-transition: 0.2s all;
+			transition: 0.2s all;
+		}
+
+		.notfound a:hover {
+			color: var(--s2-color);
+		}
+
+		@media only screen and (max-width: 767px) {
+			.notfound .notfound-404 h2 {
+				font-size: 24px;
+			}
+		}
+
+		@media only screen and (max-width: 480px) {
+			.notfound .notfound-404 h1 {
+				font-size: 182px;
+			}
+		}
+
+		/* added */
+		span {
+			color: var(--s1-color);
+		}
+
 		span:hover {
-			fill: #8400ff;
+			fill: var(--s2-color);
+		}
+
+		:root {
+			--s1-color: #2d4579;
+			--s2-color: #FC8955;
+			--bg-color: #B8E3FF;
+			--t1-color: #B8E3FF;
+			--t2-color: #0583D2;
+		}
+
+		html[color-scheme='dark'] {
+			--s1-color: #ff005a;
+			--s2-color: #8400ff;
+			--bg-color: #030005;
+			--t1-color: #030005;
+			--t2-color: #fff;
+		}
+
+		/* toggle */
+		nav {
+			display: flex;
+			justify-content: flex-end;
+			padding: 20px 20px;
+		}
+
+		.nav {
+			display: flex;
+			align-items: center;
+		}
+
+		.nav em {
+			margin-left: 10px;
+			font-size: 1rem;
+		}
+
+		.toggle {
+			display: inline-block;
+			height: 34px;
+			position: relative;
+			width: 60px;
+		}
+
+		.toggle input {
+			display: none;
+		}
+
+		.slider {
+			background-color: #ccc;
+			bottom: 0;
+			cursor: pointer;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+			transition: .4s;
+		}
+
+		.slider:before {
+			background-color: #fff;
+			bottom: 4px;
+			content: "";
+			height: 26px;
+			left: 4px;
+			position: absolute;
+			transition: .4s;
+			width: 26px;
+		}
+
+		input:checked+.slider {
+			background-color: var(--s1-color);
+		}
+
+		input:checked+.slider:before {
+			transform: translateX(26px);
+		}
+
+		.slider.round {
+			border-radius: 34px;
+		}
+
+		.slider.round:before {
+			border-radius: 50%;
 		}
 	</style>
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
-
 	<script>
+		document.addEventListener("DOMContentLoaded", function (event) {
+			document.documentElement.setAttribute('color-scheme', 'dark');
+			const s = document.querySelector('.toggle input[type="checkbox"]');
+			s.checked = true;
+			s.addEventListener('change', setScheme, false);
+		});
+		function setScheme(e) {
+			document.documentElement.setAttribute('color-scheme', e.target.checked ? 'dark' : 'light');
+		}
 	</script>
 
 	<noscript>
@@ -33,6 +229,12 @@
 
 <body>
 	<div id="notfound">
+		<nav class="nav">
+			<label class="toggle" for="checkbox">
+				<input type="checkbox" id="checkbox"/>
+				<div class="slider round"></div>
+			</label>
+		</nav>
 		<div class="notfound">
 			<div class="notfound-404">
 				<h1>404</h1>
