@@ -5,7 +5,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-	<meta name="theme-color" content="#030005">
+	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#B8E3FF">
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#030005">
 	<meta name="description" content="404">
 
 	<title>404 ~ @anotherkev</title>
@@ -214,10 +215,11 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function (event) {
-			document.documentElement.setAttribute('color-scheme', 'dark');
+		document.addEventListener('DOMContentLoaded', function (event) {
+			const p = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+			document.documentElement.setAttribute('color-scheme', p);
 			const s = document.querySelector('.toggle input[type="checkbox"]');
-			s.checked = true;
+			if (p === 'dark') { s.checked = true; }
 			s.addEventListener('change', setScheme, false);
 		});
 		function setScheme(e) {
