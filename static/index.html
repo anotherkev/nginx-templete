@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 	<meta name="theme-color" content="#030005">
 	<meta name="description" content="404">
@@ -207,6 +207,13 @@
 		.slider.round:before {
 			border-radius: 50%;
 		}
+
+		@supports(padding: max(0px)) {
+			.nav {
+				padding-left: max(12px, env(safe-area-inset-left));
+				padding-right: max(12px, env(safe-area-inset-right));
+			}
+		}
 	</style>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -223,6 +230,15 @@
 		}
 	</script>
 
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-CWZH84SB4B"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-CWZH84SB4B');
+	</script>
+
 	<noscript>
 	</noscript>
 </head>
@@ -231,7 +247,7 @@
 	<div id="notfound">
 		<nav class="nav">
 			<label class="toggle" for="checkbox">
-				<input type="checkbox" id="checkbox"/>
+				<input type="checkbox" id="checkbox" />
 				<div class="slider round"></div>
 			</label>
 		</nav>
@@ -240,13 +256,13 @@
 				<h1>404</h1>
 				<h2>Nothing to see here</h2>
 			</div>
-			<a href="https://www.instagram.com/anotherkev/">
+			<a href="https://www.instagram.com/anotherkev/" target="_blank" rel="external">
 				<span class="iconify-inline" data-icon="mdi:instagram"></span>
 				ig</a>
-			<a href="https://www.linkedin.com/in/anotherkev/">
+			<a href="https://www.linkedin.com/in/anotherkev/" target="_blank" rel="external">
 				<span class="iconify-inline" data-icon="jam:linkedin-square"></span>
 				li</a>
-			<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+			<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="external">
 				<span class="iconify-inline" data-icon="ant-design:youtube-outlined"></span>
 				yt</a>
 		</div>
