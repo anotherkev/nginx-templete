@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" translate="no">
+<html lang="en">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#B8E3FF">
-	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#030005">
+	<meta name="theme-color" content="#0583D2">
 	<meta name="description" content="404">
 
 	<title>404 ~ @anotherkev</title>
@@ -25,13 +24,13 @@
 			margin: 0;
 		}
 
-		#notfound {
+		#nf {
 			position: relative;
 			height: 100vh;
-			background: var(--t1-color);
+			background: var(--bg-color);
 		}
 
-		#notfound .notfound {
+		#nf .nf {
 			position: absolute;
 			left: 50%;
 			top: 50%;
@@ -40,21 +39,21 @@
 			transform: translate(-50%, -50%);
 		}
 
-		.notfound {
+		.nf {
 			max-width: 767px;
 			width: 100%;
 			line-height: 1.4;
 			text-align: center;
 		}
 
-		.notfound .notfound-404 {
+		.nf .nf-h {
 			position: relative;
 			height: 180px;
 			margin-bottom: 20px;
 			z-index: -1;
 		}
 
-		.notfound .notfound-404 h1 {
+		.nf .nf-h h1 {
 			font-family: 'Montserrat', sans-serif;
 			position: absolute;
 			left: 50%;
@@ -73,7 +72,7 @@
 			letter-spacing: -20px;
 		}
 
-		.notfound .notfound-404 h2 {
+		.nf .nf-h h2 {
 			font-family: 'Montserrat', sans-serif;
 			position: absolute;
 			left: 0;
@@ -88,7 +87,7 @@
 			margin: 0;
 		}
 
-		.notfound a {
+		.nf a {
 			font-family: 'Montserrat', sans-serif;
 			display: inline-block;
 			text-transform: uppercase;
@@ -99,47 +98,43 @@
 			padding: 10px 40px;
 			font-size: 14px;
 			font-weight: 700;
-			-webkit-transition: 0.2s all;
-			transition: 0.2s all;
 		}
 
-		.notfound a:hover {
-			color: var(--s2-color);
+		.nf span {
+			color: var(--s1-color);
+		}
+
+		.iconify-e {
+			display: none;
 		}
 
 		@media only screen and (max-width: 767px) {
-			.notfound .notfound-404 h2 {
+			.nf .nf-h h2 {
 				font-size: 24px;
 			}
 		}
 
 		@media only screen and (max-width: 480px) {
-			.notfound .notfound-404 h1 {
+			.nf .nf-h h1 {
 				font-size: 182px;
 			}
 		}
 
-		/* added */
-		span {
-			color: var(--s1-color);
-		}
-
-		span:hover {
-			fill: var(--s2-color);
-		}
-
+		/* color scheme */
 		:root {
 			--s1-color: #2d4579;
 			--s2-color: #FC8955;
-			--t1-color: #B8E3FF;
+			--t1-color: var(--bg-color);
 			--t2-color: #0583D2;
+			--bg-color: #B8E3FF;
 		}
 
 		html[color-scheme='dark'] {
 			--s1-color: #ff005a;
 			--s2-color: #8400ff;
-			--t1-color: #030005;
+			--t1-color: var(--bg-color);
 			--t2-color: #fff;
+			--bg-color: #030005;
 		}
 
 		/* toggle */
@@ -152,11 +147,29 @@
 		.nav {
 			display: flex;
 			align-items: center;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+
+		.nav2 {
+			display: flex;
+			align-items: center;
+			position: fixed;
+			bottom: 0;
+			right: 0;
 		}
 
 		.nav em {
 			margin-left: 10px;
 			font-size: 1rem;
+		}
+
+		@supports(padding: max(0px)) {
+			.nav, .nav2 {
+				padding-left: max(12px, env(safe-area-inset-left));
+				padding-right: max(12px, env(safe-area-inset-right));
+			}
 		}
 
 		.toggle {
@@ -181,6 +194,10 @@
 			transition: .4s;
 		}
 
+		.slider-a {
+			background-color: var(--s2-color);
+		}
+
 		.slider:before {
 			background-color: var(--t1-color);
 			bottom: 4px;
@@ -188,8 +205,18 @@
 			height: 26px;
 			left: 4px;
 			position: absolute;
-			transition: .4s;
+			/* transition: .4s; */
 			width: 26px;
+		}
+
+		.iconify-t {
+			color: var(--bg-color);
+			bottom: 4px;
+			height: 26px;
+			right: 4px;
+			left: 13px;
+			position: absolute;
+			width: 60px;
 		}
 
 		input:checked+.slider:before {
@@ -204,26 +231,56 @@
 			border-radius: 50%;
 		}
 
-		@supports(padding: max(0px)) {
-			.nav {
-				padding-left: max(12px, env(safe-area-inset-left));
-				padding-right: max(12px, env(safe-area-inset-right));
-			}
+		.nt {
+			-webkit-transition: none !important;
+			-moz-transition: none !important;
+			-o-transition: none !important;
+			transition: none !important;
+		}
+
+		.ns {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
 		}
 	</style>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
 	<script>
-		document.addEventListener('DOMContentLoaded', function (event) {
-			const p = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
-			document.documentElement.setAttribute('color-scheme', p);
-			const s = document.querySelector('.toggle input[type="checkbox"]');
-			if (p === 'dark') { s.checked = true; }
-			s.addEventListener('change', setScheme, false);
+		$(document).ready(function () {
+			const pcs = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			// const prm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			const a = document.getElementById('checkbox-a');
+			const s = document.getElementById('checkbox-s');
+			const m = document.querySelector('meta[name="theme-color"]');
+			$(s).on('change', setS);
+			$(a).on('change', setA);
+			if (pcs) {
+				$(document.documentElement).attr('color-scheme', 'dark');
+				$(m).attr('content', '#030005');
+				$(s).prop('checked', true);
+			}
 		});
-		function setScheme(e) {
-			document.documentElement.setAttribute('color-scheme', e.target.checked ? 'dark' : 'light');
+		function setS(e) {
+			$(document.documentElement).attr('color-scheme', e.target.checked ? 'dark' : 'light');
+			$(document.querySelector('meta[name="theme-color"]')).attr('content', e.target.checked ? '#030005' : '#0583D2');
+		}
+		function setA(e) {
+			$('*').toggleClass('nt');
+			if (e.target.checked) {
+				$('h1').css('color', 'var(--s2-color)');
+				$('h1, h2').css('text-shadow', 'none');
+				$('.iconify-l').hide();
+				$('.iconify-e').show();
+			}
+			else {
+				$('h1').css('color', 'var(--bg-color)');
+				$('h1, h2').css('text-shadow', '');
+				$('.iconify-l').show();
+				$('.iconify-e').hide();
+			}
 		}
 	</script>
 
@@ -232,27 +289,51 @@
 </head>
 
 <body>
-	<div id="notfound">
-		<nav class="nav">
-			<label class="toggle" for="checkbox">
-				<input type="checkbox" id="checkbox" />
-				<div class="slider round"></div>
-			</label>
-		</nav>
-		<div class="notfound">
-			<div class="notfound-404">
+	<div id="nf" class="ns">
+		<div class="nf">
+			<div class="nf-h">
 				<h1>404</h1>
 				<h2>Nothing to see here</h2>
 			</div>
-			<a href="https://www.instagram.com/anotherkev/" target="_blank" rel="external">
-				<span class="iconify-inline" data-icon="mdi:instagram"></span>
-				ig</a>
-			<a href="https://www.linkedin.com/in/anotherkev/" target="_blank" rel="external">
-				<span class="iconify-inline" data-icon="jam:linkedin-square"></span>
-				li</a>
-			<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="external">
-				<span class="iconify-inline" data-icon="ant-design:youtube-outlined"></span>
-				yt</a>
+			<div translate="no">
+				<a href="https://www.instagram.com/anotherkev/" target="_blank" rel="external"
+					ping="https://anotherkev.com/t/ig"
+					aria-label="Instagram (opens in a new window)">
+					<span>IG</span>
+					<span class="iconify-inline iconify-l" data-icon="mdi:instagram"></span>
+					<span class="iconify-inline iconify-e" data-icon="mi:external-link"></span>
+				</a>
+				<a href="https://www.linkedin.com/in/anotherkev/" target="_blank" rel="external"
+					ping="https://anotherkev.com/t/li"
+					aria-label="LinkedIn (opens in a new window)">
+					<span>LI</span>
+					<span class="iconify-inline iconify-l" data-icon="jam:linkedin-square"></span>
+					<span class="iconify-inline iconify-e" data-icon="mi:external-link"></span>
+				</a>
+				<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="external"
+					ping="https://anotherkev.com/t/yt"
+					aria-label="YouTube (opens in a new window)">
+					<span>YT</span>
+					<span class="iconify-inline iconify-l" data-icon="ant-design:youtube-outlined"></span>
+					<span class="iconify-inline iconify-e" data-icon="mi:external-link"></span>
+				</a>
+			</div>
+		</div>
+		<div>
+			<nav class="nav">
+				<label class="toggle" for="checkbox-a" role="button" aria-label="Accessibility view toggle">
+					<input type="checkbox" id="checkbox-a" />
+					<span class="slider slider-a round"></span>
+					<span class="iconify-inline iconify-t" data-icon="fluent:accessibility-20-filled"></span>
+				</label>
+			</nav>
+			<nav class="nav2">
+				<label class="toggle" for="checkbox-s" role="button" aria-label="Light/dark theme toggle">
+					<input type="checkbox" id="checkbox-s" />
+					<span class="slider round"></span>
+					<span class="iconify-inline iconify-t" data-icon="clarity:moon-solid"></span>
+				</label>
+			</nav>
 		</div>
 	</div>
 </body>
